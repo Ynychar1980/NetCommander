@@ -3,6 +3,10 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using JetBrains.Annotations;
+using NetCommander.Shared.ViewModels.Commands;
+using NetCommander.Shared.ViewModels.Core;
+using NetCommander.Shared.ViewModels.FileEntities;
+using NetCommander.Shared.ViewModels.FileEntities.Base;
 
 namespace NetCommander.Shared.ViewModels
 {

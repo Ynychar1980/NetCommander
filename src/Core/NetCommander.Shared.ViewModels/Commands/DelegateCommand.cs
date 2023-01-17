@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace NetCommander.Shared.ViewModels;
+namespace NetCommander.Shared.ViewModels.Commands;
 
 public class DelegateCommand : ICommand
 {
@@ -18,7 +18,7 @@ public class DelegateCommand : ICommand
 
     public void Execute(object? parameter)
     {
-         _open?.Invoke( parameter );   
+        _open?.Invoke(parameter);
     }
 
     public event EventHandler? CanExecuteChanged;

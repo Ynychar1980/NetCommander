@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
-namespace NetCommander.Shared.ViewModels;
+namespace NetCommander.Shared.ViewModels.Core;
 
 public class BaseViewModel : INotifyPropertyChanged
 {
@@ -11,13 +11,13 @@ public class BaseViewModel : INotifyPropertyChanged
     public event PropertyChangedEventHandler? PropertyChanged;
 
     #endregion
-        
+
     #region Protected Methods
 
     [NotifyPropertyChangedInvocator]
-    protected virtual void OnPropertyChanged( [CallerMemberName] string? propertyName = null )
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
-        PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     #endregion

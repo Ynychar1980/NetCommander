@@ -1,4 +1,6 @@
-﻿namespace NetCommander.Shared.ViewModels;
+﻿using NetCommander.Shared.ViewModels.FileEntities.Base;
+
+namespace NetCommander.Shared.ViewModels.FileEntities;
 
 public sealed class FileViewModel : FileEntityViewModel
 {
