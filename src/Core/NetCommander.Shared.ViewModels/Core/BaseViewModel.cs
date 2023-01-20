@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
-namespace NetCommander.Shared.ViewModels.Core;
+namespace NetCommander.Shared.ViewModels;
 
 public class BaseViewModel : INotifyPropertyChanged
 {

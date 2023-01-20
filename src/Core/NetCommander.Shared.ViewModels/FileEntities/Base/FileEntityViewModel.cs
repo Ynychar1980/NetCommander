@@ -1,6 +1,4 @@
-﻿using NetCommander.Shared.ViewModels.Core;
-
-namespace NetCommander.Shared.ViewModels.FileEntities.Base;
+﻿namespace NetCommander.Shared.ViewModels.FileEntities.Base;
 
 public abstract class FileEntityViewModel : BaseViewModel
 {
