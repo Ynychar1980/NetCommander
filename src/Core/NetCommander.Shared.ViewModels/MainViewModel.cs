@@ -38,7 +38,12 @@ namespace NetCommander.Shared.ViewModels
 
         #endregion
 
-        #region Protected Methods
+        #region Public Methods
+
+        public void ApplicationClosing()
+        {
+
+        }
 
         #endregion
 
@@ -84,5 +89,6 @@ namespace NetCommander.Shared.ViewModels
 
         #endregion
 
+        
     }
 }

@@ -6,6 +6,7 @@
         xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
         xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
         xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ui="clr-namespace:NetCommander.Avalonia.UI"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="NetCommander.Avalonia.UI.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -14,37 +15,55 @@
         WindowStartupLocation="CenterScreen"
         >
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-	<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <TextBlock 
-            Text="{Binding FilePath}"/>
-        <ListBox Grid.Row="1"
-                 Items="{Binding DirectoryAndFiles}"
-                 SelectedItem="{Binding SelectedFileEntity}">
-
-			<i:Interaction.Behaviors>
-                <ia:EventTriggerBehavior EventName="DoubleTapped">
-                    <ia:InvokeCommandAction
-                        Command="{Binding OpenCommand}"
-                        CommandParameter="{Binding SelectedFileEntity}"/>
-                </ia:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
-
-            <ListBox.ItemTemplate>
+    <Grid>
+		<TabControl Items="{Binding DirectoryTabItems}"
+                    SelectedItem="{Binding CurrentDirectoryTabItem}">
+            <TabControl.Template>
+                <ControlTemplate>
+                    <Border Padding="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <ItemsPresenter Name="PART_ItemsPresenter"
+                                                Items="{TemplateBinding Items}"
+                                                ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                ItemTemplate="{TemplateBinding ItemTemplate}"/>
+                                <Button Margin="2"
+                                        Command="{Binding AddTabItemCommand}"
+                                        Content="+"
+                                        Width="{Binding $self.Bounds.Height}"/>
+                            </StackPanel>
+                            
+                            <ContentPresenter Name="PART_SelectedContentHost"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding SelectedContent}"
+                                              ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </TabControl.Template>
+            <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}"/>
-                    </Grid>
+                        <Button Command="{Binding CloseCommand}">X</Button>
+                    </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ui:DirectoryTabItem/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+
+        </TabControl>
     </Grid>
 </Window>
